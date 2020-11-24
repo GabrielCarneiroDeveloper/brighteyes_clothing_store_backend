@@ -1,0 +1,28 @@
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-typescript"
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties",
+        "@babel/plugin-transform-runtime",
+        [
+            "module-resolver",
+            {
+                "root": [
+                    "./dist"
+                ],
+                "alias": {
+                    "@src": "./dist",
+                    "@config": "./config",
+                    "@models": "./models",
+                    "@controllers": "./controllers",
+                    "@views": "./views"
+                }
+            }
+        ]
+    ],
+    "ignore": [
+        "**/*.spec.ts"
+    ]
+}

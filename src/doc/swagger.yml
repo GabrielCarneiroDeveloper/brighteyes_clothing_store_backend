@@ -1,0 +1,142 @@
+openapi: "3.0.2"
+info:
+  version: "1.0"
+  title: BrightEyes Store
+  description: BrightEyes Store management API
+
+servers:
+  - url: http://HOST_ADDRESS_AND_PORT # will be changed in server starting
+
+tags:
+  - name: Server
+    description: Server status route
+  - name: Authentication
+    description: Authentication routes
+  - name: Employee
+    description: Employee routes
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: authorization
+
+  schemas:
+    EmployeeTitle:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+
+    EmployeeStatus:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+
+    Employee:
+      type: object
+      properties:
+        id:
+          type: number
+        name:
+          type: string
+        photo:
+          type: string
+        birthdate:
+          type: string
+          format: date-time
+        password:
+          type: string
+        email:
+          type: string
+        title:
+          $ref: "#/components/schemas/EmployeeTitle"
+        status:
+          $ref: "#/components/schemas/EmployeeStatus"
+
+security:
+  - ApiKeyAuth: []
+
+paths:
+  #####################################
+  # Server routes
+  #####################################
+  /:
+    get:
+      summary: Check if server is running or not
+      tags:
+        - Server
+      responses:
+        200:
+          description: Shows message about server is running well
+
+  /run-seeders:
+    get:
+      summary: Run seeders
+      tags:
+        - Server
+      responses:
+        200:
+          description: Populate database with seeders data
+
+  #####################################
+  # Authentication routes
+  #####################################
+  /auth/sign-in:
+    post:
+      summary: Signs user in and returns access token
+      tags:
+        - Authentication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+            example:
+              email: "hr@brighteyes.com"
+              password: senha123
+      responses:
+        200:
+          description: Returns user auth token
+        401:
+          description: Unprocessable Entity
+
+  /auth/verify:
+    get:
+      security:
+        - ApiKeyAuth: [admin]
+      summary: Check if token is valid
+      tags:
+        - Authentication
+      responses:
+        200:
+          description: Ensure the token is valid
+
+  #####################################
+  # Employees routes
+  #####################################
+  /employees:
+    get:
+      summary: List all employees
+      tags:
+        - Employee
+      responses:
+        200:
+          description: Returns employees list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Employee"
