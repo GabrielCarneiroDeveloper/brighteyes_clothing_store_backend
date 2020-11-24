@@ -5,7 +5,7 @@
   "author": "Gabriel Carneiro <gabrielcarneirocef@gmail.com>",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/GabrielCarneiroDeveloper/brighteyes_clothing_store_backend"
   },
   "engines": {
     "node": "14.x"
