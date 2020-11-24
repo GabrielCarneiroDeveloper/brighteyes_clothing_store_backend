@@ -112,8 +112,7 @@ export class App implements IApp {
   }
 
   start(): void {
-    this.application.listen(APP_CONFIG.serve.port, () => {
-      logger.info(`-- Server running on port ${APP_CONFIG.serve.port} --`)
-    })
+    console.log(APP_CONFIG)
+    this.application.listen(APP_CONFIG.serve.port)
   }
 }

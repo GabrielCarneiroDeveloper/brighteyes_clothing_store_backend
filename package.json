@@ -7,9 +7,6 @@
     "type": "git",
     "url": "https://github.com/GabrielCarneiroDeveloper/brighteyes_clothing_store_backend"
   },
-  "engines": {
-    "node": "14.x"
-  },
   "license": "MIT",
   "scripts": {
     "dev": "export NODE_ENV=development && ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --no-notify --ignore-watch node_modules src/server.ts",
