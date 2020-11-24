@@ -23,7 +23,7 @@ interface IAPP_CONFIG {
   version: string
   serve: {
     host: string
-    port: number
+    port: string
     logLevel: string
   }
   images: string
@@ -33,8 +33,8 @@ const APP_CONFIG = {
   jwtSecretkey: process.env.JWT_SECRET_KEY,
   version: readVersionFile(),
   serve: {
-    host: process.env.HOST_ADDRESS || '0.0.0.0',
-    port: parseInt(process.env.PORT || '3400'),
+    host: process.env.HOST_ADDRESS || '127.0.0.1',
+    port: process.env.PORT || '3400',
     logLevel: process.env.LOG_LEVEL || 'info'
   },
   images: path.join(path.basename(__filename), '..', 'src', 'public', 'images')
