@@ -112,7 +112,6 @@ export class App implements IApp {
   }
 
   start(): void {
-    console.log(APP_CONFIG)
     this.application.listen(APP_CONFIG.serve.port)
   }
 }
