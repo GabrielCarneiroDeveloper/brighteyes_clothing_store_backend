@@ -19,6 +19,7 @@ function readVersionFile() {
     });
     return versionFile;
 }
+const b = process.env.NODE_ENV === 'development' ? 'src' : 'dist';
 const APP_CONFIG = {
     jwtSecretkey: process.env.JWT_SECRET_KEY,
     version: readVersionFile(),
@@ -27,7 +28,7 @@ const APP_CONFIG = {
         port: process.env.PORT || '3333',
         logLevel: process.env.LOG_LEVEL || 'info'
     },
-    images: path_1.default.join(__dirname, '..', 'public', 'images')
+    images: path_1.default.join(path_1.default.basename(__filename), '..', b, 'public', 'images')
 };
 exports.default = APP_CONFIG;
 //# sourceMappingURL=app.config.js.map

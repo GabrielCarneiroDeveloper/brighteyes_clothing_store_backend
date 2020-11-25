@@ -29,6 +29,8 @@ interface IAPP_CONFIG {
   images: string
 }
 
+const b = process.env.NODE_ENV === 'development' ? 'src' : 'dist'
+
 const APP_CONFIG = {
   jwtSecretkey: process.env.JWT_SECRET_KEY,
   version: readVersionFile(),
@@ -37,7 +39,7 @@ const APP_CONFIG = {
     port: process.env.PORT || '3333',
     logLevel: process.env.LOG_LEVEL || 'info'
   },
-  images: path.join(__dirname, '..', 'public', 'images')
+  images: path.join(path.basename(__filename), '..', b, 'public', 'images')
 } as IAPP_CONFIG
 
 export default APP_CONFIG
