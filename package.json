@@ -10,7 +10,6 @@
   "license": "MIT",
   "scripts": {
     "dev": "export NODE_ENV=development && ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --no-notify --ignore-watch node_modules src/server.ts",
-    "build": "yarn && tsc && cp package.json ./dist/ && cp -r ./src/doc ./dist/ && cp -r ./src/public ./dist/ && cd ./dist/ && yarn --no-lockfile --production",
     "test": "jest",
     "start": "node dist/server.js",
     "db:migrate": "ts-node src/common/seeds/runSeeders.ts"
