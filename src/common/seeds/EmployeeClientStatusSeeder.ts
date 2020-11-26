@@ -26,6 +26,10 @@ export class EmployeeClientStatusSeeder implements ISeeder<EmployeeClientStatus>
   }
 
   async run(): Promise<void> {
+    const data = this.data()
+    const parsedObjects = objectFactory<EmployeeClientStatus>(data, EmployeeClientStatus)
+    this.objectList = [...parsedObjects]
+
     logger.debug(`Running seeder ${this.constructor.name}`)
     const repository = getRepository(EmployeeClientStatus)
     this.objectList.forEach(async (o) => {

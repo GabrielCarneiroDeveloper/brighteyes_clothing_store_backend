@@ -6,10 +6,17 @@ import { Client } from './../../modules/client/Client'
 import { EmployeeClientStatus } from './../../modules/employee_client_status/EmployeeClientStatus'
 import logger from '../logger/logger'
 
-export class ClientSeeder implements ISeeder<Client> {
-  objectList: Client[]
+type CreateClientSeed = Omit<Client, 'id' | 'status'>
 
-  data(): Omit<Client, 'id' | 'status'>[] {
+export class ClientSeeder implements ISeeder<Client> {
+  objectList: CreateClientSeed[]
+
+  constructor() {
+    const parsedObjects = objectFactory<CreateClientSeed>(this.data(), Client)
+    this.objectList = [...parsedObjects]
+  }
+
+  data(): CreateClientSeed[] {
     return [
       {
         name: 'Client 1',

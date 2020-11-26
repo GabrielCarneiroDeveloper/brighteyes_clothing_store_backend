@@ -55,12 +55,16 @@ export class App implements IApp {
     await this.initModule(ShoppingCartController, route)
     await this.initModule(AuthController, route)
     await this.initModule(StatisticsController, route)
+
+    if (process.env.NODE_ENV === 'production') {
+      await runSeeders()
+    }
   }
 
   async initSeeders(route: Router): Promise<void> {
     route.get('/run-seeders', async (_: Request, response: Response) => {
       try {
-        runSeeders()
+        await runSeeders()
         return response.json({ message: 'Database seeded successfully' })
       } catch (error) {
         console.error(error.message)

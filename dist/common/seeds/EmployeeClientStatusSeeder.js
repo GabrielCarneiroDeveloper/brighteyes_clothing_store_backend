@@ -24,6 +24,9 @@ class EmployeeClientStatusSeeder {
         ];
     }
     async run() {
+        const data = this.data();
+        const parsedObjects = objectFactory_1.objectFactory(data, EmployeeClientStatus_1.EmployeeClientStatus);
+        this.objectList = [...parsedObjects];
         logger_1.default.debug(`Running seeder ${this.constructor.name}`);
         const repository = typeorm_1.getRepository(EmployeeClientStatus_1.EmployeeClientStatus);
         this.objectList.forEach(async (o) => {

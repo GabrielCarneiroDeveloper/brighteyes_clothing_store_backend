@@ -8,9 +8,7 @@ import { EmployeeSeeder } from './EmployeeSeeder'
 import { ClothesSeeder } from './ClothesSeeder'
 import { ShoppingCartSeeder } from './ShoppingCartSeeder'
 
-// problemas ao rodar os seeders... precisando rodar duas vezes pra
-// todos serem aplicados
-export function runSeeders() {
+export async function runSeeders(): Promise<void> {
   const seedRunner = new SeedRunner()
 
   const clothesStatusSeeder = new ClothesStatusSeeder()
@@ -31,5 +29,15 @@ export function runSeeders() {
   seedRunner.addSedder(clothesSeeder)
   seedRunner.addSedder(shoppingCartSeeder)
 
-  seedRunner.start()
+  let count = 0
+  while (count < 5) {
+    const p = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(seedRunner.start())
+      }, 2000)
+    })
+    await p
+
+    count++
+  }
 }

@@ -8,19 +8,12 @@ const typeorm_1 = require("typeorm");
 const objectFactory_1 = require("./objectFactory");
 const Clothes_1 = require("./../../modules/clothes/Clothes");
 const ClothesStatus_1 = require("./../../modules/clothes_status/ClothesStatus");
-const Employee_1 = require("./../../modules/employee/Employee");
-const EmployeeTitle_1 = require("./../../modules/employee_title/EmployeeTitle");
 const ClothesStatusEnum_1 = require("./../../modules/clothes_status/ClothesStatusEnum");
 const logger_1 = __importDefault(require("../logger/logger"));
 class ClothesSeeder {
     async data() {
         const clothesStatusInStock = await typeorm_1.getRepository(ClothesStatus_1.ClothesStatus).findOneOrFail({
             where: { name: ClothesStatusEnum_1.ClothesStatusEnum.IN_STOCK }
-        });
-        const employeeWarehouse = await typeorm_1.getRepository(Employee_1.Employee).findOneOrFail({
-            where: {
-                title: await typeorm_1.getRepository(EmployeeTitle_1.EmployeeTitle).findOneOrFail({ where: { name: 'Warehouse' } })
-            }
         });
         return [
             {

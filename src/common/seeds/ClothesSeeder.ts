@@ -7,8 +7,8 @@ import { objectFactory } from './objectFactory'
 import { Clothes } from './../../modules/clothes/Clothes'
 import { ClothesStatus } from './../../modules/clothes_status/ClothesStatus'
 
-import { Employee } from './../../modules/employee/Employee'
-import { EmployeeTitle } from './../../modules/employee_title/EmployeeTitle'
+// import { Employee } from './../../modules/employee/Employee'
+// import { EmployeeTitle } from './../../modules/employee_title/EmployeeTitle'
 import { ClothesStatusEnum } from './../../modules/clothes_status/ClothesStatusEnum'
 import logger from '../logger/logger'
 
@@ -19,11 +19,11 @@ export class ClothesSeeder implements ISeeder<Clothes> {
     const clothesStatusInStock = await getRepository(ClothesStatus).findOneOrFail({
       where: { name: ClothesStatusEnum.IN_STOCK }
     })
-    const employeeWarehouse = await getRepository(Employee).findOneOrFail({
-      where: {
-        title: await getRepository(EmployeeTitle).findOneOrFail({ where: { name: 'Warehouse' } })
-      }
-    })
+    // const employeeWarehouse = await getRepository(Employee).findOneOrFail({
+    //   where: {
+    //     title: await getRepository(EmployeeTitle).findOneOrFail({ where: { name: 'Warehouse' } })
+    //   }
+    // })
     return [
       {
         name: 'Dress',

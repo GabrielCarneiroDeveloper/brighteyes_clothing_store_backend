@@ -10,7 +10,7 @@ const ClientSeeder_1 = require("./ClientSeeder");
 const EmployeeSeeder_1 = require("./EmployeeSeeder");
 const ClothesSeeder_1 = require("./ClothesSeeder");
 const ShoppingCartSeeder_1 = require("./ShoppingCartSeeder");
-function runSeeders() {
+async function runSeeders() {
     const seedRunner = new SeedRunner_1.SeedRunner();
     const clothesStatusSeeder = new ClothesStatusSeeder_1.ClothesStatusSeeder();
     const employeeClientStatusSeeder = new EmployeeClientStatusSeeder_1.EmployeeClientStatusSeeder();
@@ -28,7 +28,16 @@ function runSeeders() {
     seedRunner.addSedder(employeeSeeder);
     seedRunner.addSedder(clothesSeeder);
     seedRunner.addSedder(shoppingCartSeeder);
-    seedRunner.start();
+    let count = 0;
+    while (count < 5) {
+        const p = new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(seedRunner.start());
+            }, 2000);
+        });
+        await p;
+        count++;
+    }
 }
 exports.runSeeders = runSeeders;
 //# sourceMappingURL=runSeeders.js.map

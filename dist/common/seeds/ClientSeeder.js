@@ -10,6 +10,10 @@ const Client_1 = require("./../../modules/client/Client");
 const EmployeeClientStatus_1 = require("./../../modules/employee_client_status/EmployeeClientStatus");
 const logger_1 = __importDefault(require("../logger/logger"));
 class ClientSeeder {
+    constructor() {
+        const parsedObjects = objectFactory_1.objectFactory(this.data(), Client_1.Client);
+        this.objectList = [...parsedObjects];
+    }
     data() {
         return [
             {
