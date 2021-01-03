@@ -10,6 +10,7 @@ import { Auth } from './Auth'
 import APP_CONFIG from './../../config/app.config'
 import logger from './../../common/logger/logger'
 import bcrypt from 'bcrypt'
+import { EnumEmployeeClientStatus } from './../employee_client_status/IEmployeeClientStatus'
 
 interface IAuthController {
   signIn(request: Request, response: Response): Promise<Response>
@@ -58,6 +59,10 @@ export class AuthController extends AbstractController implements IController, I
 
       if (!passwordsMatch) {
         throw new Error('Password is invalid to email ' + email)
+      }
+
+      if (foundEmployee.status.name === EnumEmployeeClientStatus.DEACTIVATED) {
+        throw new Error('Employee is unauthorized to login')
       }
 
       logger.debug(`Successfully signed ${email} in`)
