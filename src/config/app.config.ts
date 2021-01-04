@@ -29,7 +29,7 @@ interface IAPP_CONFIG {
   images: string
 }
 
-const b = process.env.NODE_ENV === 'development' ? 'src' : 'dist'
+const b = process.env.NODE_ENV !== 'production' ? 'src' : 'dist'
 
 const APP_CONFIG = {
   jwtSecretkey: process.env.JWT_SECRET_KEY,
