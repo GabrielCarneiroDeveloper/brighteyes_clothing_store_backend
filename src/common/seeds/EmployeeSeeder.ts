@@ -30,7 +30,7 @@ export class EmployeeSeeder implements ISeeder<Employee> {
 
     const hrEmployee: Omit<Employee, 'id' | 'registeredBy'> = {
       name: 'Employee 1',
-      birthdate: dateFormatter(new Date('10/14/1987')),
+      birthdate: '14/12/1987',
       password: PASSWORD_DEFAULT,
       title: humanResourceTitle,
       status: activatedStatus,
@@ -54,31 +54,31 @@ export class EmployeeSeeder implements ISeeder<Employee> {
     return [
       {
         name: 'Employee 2',
-        birthdate: dateFormatter(new Date('10/14/1987')),
+        birthdate: '14/12/1987',
         password: PASSWORD_DEFAULT,
         email: 'warehouse@brighteyes.com'
       },
       {
         name: 'Employee 3',
-        birthdate: dateFormatter(new Date('10/14/1987')),
+        birthdate: '14/12/1987',
         password: PASSWORD_DEFAULT,
         email: 'customerservice@brighteyes.com'
       },
       {
         name: 'Employee 4',
-        birthdate: dateFormatter(new Date('10/14/1987')),
+        birthdate: '14/12/1987',
         password: PASSWORD_DEFAULT,
         email: 'seller@brighteyes.com'
       },
       {
         name: 'Employee 5',
-        birthdate: dateFormatter(new Date('10/14/1987')),
+        birthdate: '14/12/1987',
         password: PASSWORD_DEFAULT,
         email: 'cashier@brighteyes.com'
       },
       {
         name: 'Admin',
-        birthdate: dateFormatter(new Date('10/14/1987')),
+        birthdate: '14/12/1987',
         password: PASSWORD_DEFAULT,
         email: 'admin@brighteyes.com'
       }

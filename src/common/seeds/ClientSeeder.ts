@@ -21,7 +21,7 @@ export class ClientSeeder implements ISeeder<Client> {
       {
         name: 'Client 1',
         address: 'Rua asdf, 123 - AEdasdfsd, asdfasdf',
-        birthdate: new Date('10/14/1987').toISOString(),
+        birthdate: '14/12/1987',
         cpf: '123.123.123-13',
         createdAt: new Date()
       }
