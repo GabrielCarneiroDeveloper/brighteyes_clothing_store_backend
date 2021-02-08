@@ -58,4 +58,30 @@ export class EmployeeController extends AbstractController implements IControlle
       })
     }
   }
+
+  update = async (request: Request, response: Response): Promise<Response> => {
+    try {
+      const data = request.body
+      const id = request.params.id
+      const repository = getRepository(this.ModelClassName)
+
+      const foundEmployee = (await repository.findOne({ where: { email: data.email } })) as Employee
+      if (foundEmployee.name !== data.name) {
+        throw new Error('Employee already exists')
+      }
+
+      await repository.update(id, data)
+      const updatedObject = await repository.findOneOrFail(id, this.findOneOptions)
+      return response.json({
+        message: 'Object updated',
+        data: updatedObject
+      })
+    } catch (error) {
+      console.error(error)
+      return response.status(401).json({
+        message: 'An error occurred',
+        error_message: error.message
+      })
+    }
+  }
 }
