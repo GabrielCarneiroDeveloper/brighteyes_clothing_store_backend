@@ -37,6 +37,30 @@ class EmployeeController extends abstract_controller_1.AbstractController {
                 });
             }
         };
+        this.update = async (request, response) => {
+            try {
+                const data = request.body;
+                const id = request.params.id;
+                const repository = typeorm_1.getRepository(this.ModelClassName);
+                const foundEmployee = (await repository.findOne({ where: { email: data.email } }));
+                if (foundEmployee.name !== data.name) {
+                    throw new Error('Employee already exists');
+                }
+                await repository.update(id, data);
+                const updatedObject = await repository.findOneOrFail(id, this.findOneOptions);
+                return response.json({
+                    message: 'Object updated',
+                    data: updatedObject
+                });
+            }
+            catch (error) {
+                console.error(error);
+                return response.status(401).json({
+                    message: 'An error occurred',
+                    error_message: error.message
+                });
+            }
+        };
         this.ModelClassName = Employee_1.Employee;
         this.route = route;
         this.findManyOptions = { relations: ['title', 'status', 'registeredBy'] };
