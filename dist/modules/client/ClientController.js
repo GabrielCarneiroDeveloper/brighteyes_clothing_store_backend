@@ -11,7 +11,7 @@ class ClientController extends abstract_controller_1.AbstractController {
             try {
                 const data = request.body;
                 const repository = typeorm_1.getRepository(this.ModelClassName);
-                const clientFound = repository.findOne({ where: { cpf: data.cpf } });
+                const clientFound = await repository.findOne({ where: { cpf: data.cpf } });
                 if (clientFound) {
                     throw new Error('Client already exists');
                 }
@@ -35,7 +35,7 @@ class ClientController extends abstract_controller_1.AbstractController {
                 const id = request.params.id;
                 const repository = typeorm_1.getRepository(this.ModelClassName);
                 const clientFound = (await repository.findOne({ where: { cpf: data.cpf } }));
-                if (clientFound.name !== data.name) {
+                if (clientFound && clientFound.name !== data.name) {
                     throw new Error('Client already exists');
                 }
                 await repository.update(id, data);
