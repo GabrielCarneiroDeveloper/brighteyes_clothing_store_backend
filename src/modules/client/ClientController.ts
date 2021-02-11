@@ -30,7 +30,7 @@ export class ClientController extends AbstractController implements IController 
       const data = request.body
       const repository = getRepository(this.ModelClassName)
 
-      const clientFound = repository.findOne({ where: { cpf: data.cpf } })
+      const clientFound = await repository.findOne({ where: { cpf: data.cpf } })
       if (clientFound) {
         throw new Error('Client already exists')
       }
@@ -56,7 +56,7 @@ export class ClientController extends AbstractController implements IController 
       const repository = getRepository(this.ModelClassName)
 
       const clientFound = (await repository.findOne({ where: { cpf: data.cpf } })) as Client
-      if (clientFound.name !== data.name) {
+      if (clientFound && clientFound.name !== data.name) {
         throw new Error('Client already exists')
       }
 
