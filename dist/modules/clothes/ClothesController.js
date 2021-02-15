@@ -34,11 +34,11 @@ class ClothesController extends abstract_controller_1.AbstractController {
         this.update = async (request, response) => {
             try {
                 const data = request.body;
-                const id = request.params.id;
+                const id = Number(request.params.id);
                 const repository = typeorm_1.getRepository(this.ModelClassName);
                 const foundClothes = (await repository.findOne({ where: { name: data.name } }));
                 console.log(data.name);
-                if (foundClothes) {
+                if (foundClothes && foundClothes.id !== id) {
                     throw new Error('Clothes already registered');
                 }
                 await repository.update(id, data);
