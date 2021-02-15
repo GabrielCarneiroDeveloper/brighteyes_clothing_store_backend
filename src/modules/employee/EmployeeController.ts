@@ -66,7 +66,7 @@ export class EmployeeController extends AbstractController implements IControlle
       const repository = getRepository(this.ModelClassName)
 
       const foundEmployee = (await repository.findOne({ where: { email: data.email } })) as Employee
-      if (foundEmployee.name !== data.name) {
+      if (foundEmployee && foundEmployee.name !== data.name) {
         throw new Error('Employee already exists')
       }
 

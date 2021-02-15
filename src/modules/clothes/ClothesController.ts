@@ -57,12 +57,12 @@ export class ClothesController extends AbstractController implements IController
   update = async (request: Request, response: Response): Promise<Response> => {
     try {
       const data = request.body
-      const id = request.params.id
+      const id = Number(request.params.id)
       const repository = getRepository(this.ModelClassName)
 
       const foundClothes = (await repository.findOne({ where: { name: data.name } })) as Clothes
       console.log(data.name)
-      if (foundClothes) {
+      if (foundClothes && foundClothes.id !== id) {
         throw new Error('Clothes already registered')
       }
 
