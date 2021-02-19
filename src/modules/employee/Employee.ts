@@ -33,6 +33,6 @@ export class Employee {
   @Column()
   password: string
 
-  @Column()
+  @Column({ unique: true })
   email: string
 }
