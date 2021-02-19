@@ -20,7 +20,7 @@ export class Client {
   @Column()
   address: string
 
-  @Column()
+  @Column({ unique: true })
   cpf: string
 
   @Column()

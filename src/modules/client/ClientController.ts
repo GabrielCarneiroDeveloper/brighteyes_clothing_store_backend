@@ -55,11 +55,6 @@ export class ClientController extends AbstractController implements IController 
       const id = request.params.id
       const repository = getRepository(this.ModelClassName)
 
-      const clientFound = (await repository.findOne({ where: { cpf: data.cpf } })) as Client
-      if (clientFound && clientFound.name !== data.name) {
-        throw new Error('Client already exists')
-      }
-
       await repository.update(id, data)
       const updateObject = await repository.findOneOrFail(id, this.findOneOptions)
       return response.json({
