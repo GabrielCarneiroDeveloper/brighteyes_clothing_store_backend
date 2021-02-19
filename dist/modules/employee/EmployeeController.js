@@ -42,10 +42,6 @@ class EmployeeController extends abstract_controller_1.AbstractController {
                 const data = request.body;
                 const id = request.params.id;
                 const repository = typeorm_1.getRepository(this.ModelClassName);
-                const foundEmployee = (await repository.findOne({ where: { email: data.email } }));
-                if (foundEmployee && foundEmployee.name !== data.name) {
-                    throw new Error('Employee already exists');
-                }
                 await repository.update(id, data);
                 const updatedObject = await repository.findOneOrFail(id, this.findOneOptions);
                 return response.json({

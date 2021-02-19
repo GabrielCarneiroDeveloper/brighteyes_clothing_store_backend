@@ -52,7 +52,7 @@ __decorate([
     __metadata("design:type", String)
 ], Employee.prototype, "password", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column({ unique: true }),
     __metadata("design:type", String)
 ], Employee.prototype, "email", void 0);
 Employee = Employee_1 = __decorate([

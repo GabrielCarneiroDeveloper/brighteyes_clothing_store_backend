@@ -27,7 +27,7 @@ __decorate([
     __metadata("design:type", String)
 ], Client.prototype, "address", void 0);
 __decorate([
-    typeorm_1.Column(),
+    typeorm_1.Column({ unique: true }),
     __metadata("design:type", String)
 ], Client.prototype, "cpf", void 0);
 __decorate([

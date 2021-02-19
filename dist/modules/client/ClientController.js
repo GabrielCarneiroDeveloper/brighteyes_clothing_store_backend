@@ -34,10 +34,6 @@ class ClientController extends abstract_controller_1.AbstractController {
                 const data = request.body;
                 const id = request.params.id;
                 const repository = typeorm_1.getRepository(this.ModelClassName);
-                const clientFound = (await repository.findOne({ where: { cpf: data.cpf } }));
-                if (clientFound && clientFound.name !== data.name) {
-                    throw new Error('Client already exists');
-                }
                 await repository.update(id, data);
                 const updateObject = await repository.findOneOrFail(id, this.findOneOptions);
                 return response.json({
