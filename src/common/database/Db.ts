@@ -11,7 +11,7 @@ import { EmployeeClientStatus } from './../../modules/employee_client_status/Emp
 import { EmployeeTitle } from './../../modules/employee_title/EmployeeTitle'
 import { ShoppingCart } from './../../modules/shopping-cart/ShoppingCart'
 import { ShoppingCartStatus } from './../../modules/shopping_cart_status/ShoppingCartStatus'
-import APP_CONFIG from '@src/config/app.config'
+import APP_CONFIG from './../../config/app.config'
 
 export class Db implements IDb {
   private instance: Connection
