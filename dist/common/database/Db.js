@@ -14,7 +14,7 @@ const EmployeeClientStatus_1 = require("./../../modules/employee_client_status/E
 const EmployeeTitle_1 = require("./../../modules/employee_title/EmployeeTitle");
 const ShoppingCart_1 = require("./../../modules/shopping-cart/ShoppingCart");
 const ShoppingCartStatus_1 = require("./../../modules/shopping_cart_status/ShoppingCartStatus");
-const app_config_1 = __importDefault(require("@src/config/app.config"));
+const app_config_1 = __importDefault(require("./../../config/app.config"));
 class Db {
     async init() {
         try {
