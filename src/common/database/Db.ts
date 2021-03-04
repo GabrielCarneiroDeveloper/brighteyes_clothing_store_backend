@@ -11,6 +11,7 @@ import { EmployeeClientStatus } from './../../modules/employee_client_status/Emp
 import { EmployeeTitle } from './../../modules/employee_title/EmployeeTitle'
 import { ShoppingCart } from './../../modules/shopping-cart/ShoppingCart'
 import { ShoppingCartStatus } from './../../modules/shopping_cart_status/ShoppingCartStatus'
+import APP_CONFIG from '@src/config/app.config'
 
 export class Db implements IDb {
   private instance: Connection
@@ -20,8 +21,14 @@ export class Db implements IDb {
       this.instance = await createConnection({
         synchronize: true,
         logging: false,
-        type: 'sqlite',
-        database: path.join(__dirname, '..', '..', '..', 'data', 'data.db'),
+        type: 'mariadb',
+        database: APP_CONFIG.db.database,
+        username: APP_CONFIG.db.username,
+        password: APP_CONFIG.db.password,
+        host: APP_CONFIG.db.host,
+        port: APP_CONFIG.db.port,
+        // type: 'sqlite',
+        // database: path.join(__dirname, '..', '..', '..', 'data', 'data.db'),
         entities: [
           Employee,
           Client,
