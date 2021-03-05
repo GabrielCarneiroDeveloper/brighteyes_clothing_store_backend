@@ -63,9 +63,6 @@ class App {
         await this.initModule(ShoppingCartController_1.ShoppingCartController, route);
         await this.initModule(AuthController_1.AuthController, route);
         await this.initModule(StatisticsController_1.StatisticsController, route);
-        if (process.env.NODE_ENV === 'production') {
-            await runSeeders_1.runSeeders();
-        }
     }
     async initSeeders(route) {
         route.get('/run-seeders', async (_, response) => {
