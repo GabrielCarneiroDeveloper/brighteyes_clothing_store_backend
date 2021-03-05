@@ -56,9 +56,9 @@ export class App implements IApp {
     await this.initModule(AuthController, route)
     await this.initModule(StatisticsController, route)
 
-    if (process.env.NODE_ENV === 'production') {
-      await runSeeders()
-    }
+    // if (process.env.NODE_ENV === 'production') {
+    //   await runSeeders()
+    // }
   }
 
   async initSeeders(route: Router): Promise<void> {
